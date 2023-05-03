@@ -3,11 +3,13 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   Input,
   VStack,
   Icon,
   Text,
   Link,
+  Box,
 } from "@chakra-ui/react";
 import Router from "next/router";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
@@ -51,7 +53,6 @@ export default function Login() {
         </Flex>
         <Formik
           initialValues={{
-            name: "",
             email: "",
             password: "",
           }}
@@ -62,33 +63,6 @@ export default function Login() {
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
               <VStack align="center" w={"358px"}>
-                <FormControl isInvalid={!!errors.name && touched.name}>
-                  <Field
-                    h={"32px"}
-                    pr={"0"}
-                    as={Input}
-                    border={0}
-                    borderRadius={"12"}
-                    placeholder="이름"
-                    id="name"
-                    name="name"
-                    type="name"
-                    variant="filled"
-                    fontFamily="Inter"
-                    fontStyle="normal"
-                    fontWeight="600"
-                    fontSize="16px"
-                    lineHeight="24px"
-                    color="#818181"
-                    validate={(value: String) => {
-                      let error;
-                      if (value.length < 6) {
-                        error = "아이디를 입력하세요";
-                      }
-                      return error;
-                    }}
-                  />
-                </FormControl>
                 <FormControl isInvalid={!!errors.email && touched.email}>
                   <Field
                     as={Input}
@@ -104,13 +78,13 @@ export default function Login() {
                     fontFamily="Inter"
                     fontStyle="normal"
                     fontWeight="600"
-                    fontSize="16px"
-                    lineHeight="24px"
+                    fontSize="14px"
+                    lineHeight="20px"
                     color="#818181"
                     validate={(value: String) => {
                       let error;
                       if (value.length < 6) {
-                        error = "이메일을 입력하세요";
+                        error = "비밀번호를 입력하세요";
                       }
                       return error;
                     }}
@@ -142,6 +116,7 @@ export default function Login() {
                       return error;
                     }}
                   />
+                  {/* <FormErrorMessage>{errors.password}</FormErrorMessage> */}
                 </FormControl>
                 <Button
                   type="submit"
@@ -177,20 +152,35 @@ export default function Login() {
                     Countinue with Google
                   </Text>
                 </Button>
-                <Link
-                  href="/signin"
-                  pt={"8px"}
-                  height={"24px"}
-                  fontFamily="Inter"
-                  fontStyle="normal"
-                  fontWeight="600"
-                  fontSize="16px"
-                  lineHeight="24px"
-                  letterSpacing={"-2.5%"}
-                  color={"teal"}
-                >
-                  이미 계정이 있나요?
-                </Link>
+                <Box pt="8px">
+                  <Link
+                    href="/"
+                    height={"24px"}
+                    fontFamily="Inter"
+                    fontStyle="normal"
+                    fontWeight="600"
+                    fontSize="16px"
+                    lineHeight="24px"
+                    letterSpacing={"-2.5%"}
+                    color={"#000000"}
+                    mr={"8px"}
+                  >
+                    새로 오셨나요?
+                  </Link>
+                  <Link
+                    href="/"
+                    height={"24px"}
+                    fontFamily="Inter"
+                    fontStyle="normal"
+                    fontWeight="600"
+                    fontSize="16px"
+                    lineHeight="24px"
+                    letterSpacing={"-2.5%"}
+                    color={"teal"}
+                  >
+                    회원가입
+                  </Link>
+                </Box>
               </VStack>
             </form>
           )}

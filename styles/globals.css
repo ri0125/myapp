@@ -1,4 +1,4 @@
-:root {
+/*:root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -104,4 +104,27 @@ a {
   html {
     color-scheme: dark;
   }
+}*/
+@media (max-width: 768px) {
+  .mySwiper {
+    width: 517px;
+    height: 620px;
+    margin: 0;
+  }
+}
+@media (min-width: 768px) {
+  .mySwiper {
+    width: 517px;
+    height: 760px;
+    margin: 0;
+  }
+}
+
+.swiper-slide {
+  /* Center slide text vertically */
+  max-height: 404px;
+}
+
+hr {
+  width: 360px;
 }
