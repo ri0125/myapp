@@ -1,6 +1,8 @@
 import { MdOutlineMapsHomeWork, MdOutlineSearch } from "react-icons/md";
 import { AiOutlineBell } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
+/** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled";
 import {
   Flex,
   Button,
@@ -8,77 +10,104 @@ import {
   Icon,
   Avatar,
   useColorMode,
-  Text,
 } from "@chakra-ui/react";
 
-export default function Header() {
+const Header = styled(Flex)`
+  position: fixed;
+  z-index: 9999;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  background-color: #ffffff;
+`;
+const Nav = styled(Flex)`
+  align-items: center;
+`;
+const OurtownLogo = styled(Icon)`
+  width: 45px;
+  height: 45px;
+  color: teal;
+`;
+const SearchInput = styled(Input)`
+  width: 500px;
+  height: 32px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -2.5%;
+  color: #000000;
+  background-color: #e5e5e5;
+  border: 0;
+  border-radius: 12px;
+  margin: 0 13px;
+`;
+const LocationBtn = styled(Button)`
+  width: 70px;
+  height: 36px;
+  gap: 4px;
+  background-color: teal;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -2.5%;
+  color: #ffffff;
+  border-radius: 12px;
+`;
+const ArrowDownIcon = styled(Icon)`
+  width: 20px;
+  height: 20px;
+`;
+const AlramIcon = styled(Icon)`
+  width: 18px;
+  height: 21px;
+  margin-right: 0;
+`;
+const MyAvatar = styled(Avatar)`
+  width: 35px;
+  height: 35px;
+`;
+export default function header() {
   const { toggleColorMode } = useColorMode();
   return (
-    <Flex
+    <Header
       maxW={{ base: "390px", md: "1150px" }}
-      as="nav"
-      mt={{ base: "44px", md: "0" }}
-      px={{ base: "16px", md: "16px" }}
-      pt={{ base: "4.5px", md: "5px" }}
-      pb={{ base: "0", md: "5px" }}
-      alignItems={"center"}
-      justifyContent={"space-between"}
+      py={{ base: "4.5px", md: "5px" }}
+      h={{ base: "41px" }}
     >
-      <Flex w={"135px"} h={"45px"} alignItems={"center"}>
-        <Icon
+      <Nav>
+        <OurtownLogo
           as={MdOutlineMapsHomeWork}
           display={{ base: "none", md: "block" }}
-          w={"45px"}
-          h={"45px"}
-          color={"teal"}
         />
-        <Button
-          gap={"4px"}
+        <LocationBtn
           ml={{ base: "0", md: "20px" }}
-          bg={"teal"}
-          w={"70px"}
-          h={"36px"}
-          borderRadius={"12"}
           mb={{ base: "0", md: "6.5px" }}
-          fontFamily={"Inter"}
-          fontStyle={"normal"}
-          fontWeight={"600"}
-          fontSize={"16px"}
-          lineHeight={"24px"}
-          color={"#ffffff"}
-          letterSpacing={"-2.5%"}
         >
-          <Text>수원</Text>
-          <Icon as={IoIosArrowDown} w={"20px"} h={"20px"} />
-        </Button>
-      </Flex>
-
-      <Input
-        display={{ base: "none", md: "block" }}
-        w={"500px"}
-        h={"32px"}
-        fontFamily={"Inter"}
-        fontStyle={"normal"}
-        fontWeight={"600"}
-        fontSize={"16px"}
-        lineHeight={"24px"}
-        color={"#000000"}
-        letterSpacing={"-2.5%"}
-        placeholder="교동 근처에서 검색"
-        bg={"gray.200"}
-        border={"0"}
-        mx={"13px"}
-      ></Input>
-      <Flex alignItems={"center"}>
-        <Icon
+          수원
+          <ArrowDownIcon as={IoIosArrowDown} />
+        </LocationBtn>
+      </Nav>
+      <Nav>
+        <SearchInput
+          placeholder="교동 근처에서 검색"
+          display={{ base: "none", md: "block" }}
+        />
+      </Nav>
+      <Nav>
+        <AlramIcon
           as={AiOutlineBell}
           onClick={toggleColorMode}
           w={{ base: "18px", md: "19px" }}
           h={{ base: "21px", md: "22px" }}
           mr={{ base: "0", md: "20px" }}
         />
-        <Avatar display={{ base: "none", md: "block" }} w={"35px"} h={"35px"} />
-      </Flex>
-    </Flex>
+        <MyAvatar display={{ base: "none", md: "block" }} />
+      </Nav>
+    </Header>
   );
 }
